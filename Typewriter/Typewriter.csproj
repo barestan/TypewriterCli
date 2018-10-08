@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Typewriter.Metadata.Roslyn\Typewriter.Metadata.Roslyn.csproj" />
+      <ProjectReference Include="..\Typewriter.Metadata\Typewriter.Metadata.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="2.9.0" />
+      <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    </ItemGroup>
+
+</Project>
