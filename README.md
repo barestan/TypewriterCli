@@ -1,6 +1,10 @@
 # Typewriter Cli
 Typewriter NetCore version with command line interface and single file processing.  
 
+## Use Typewriter Cli with Rider
+Use Rider File Watchers settings.  
+![file watcher settings](/images/file-watcher-settings.png)
+
 ## Restrictions
 - Single file processing  
 Code model (classes, properties, methods etc) returns only objects of processing file.
