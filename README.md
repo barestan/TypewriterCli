@@ -1,5 +1,5 @@
 # Typewriter Cli
-NetCore version [Typewriter]() with command line interface and single file processing.  
+NetCore version of [Typewriter](https://frhagn.github.io/Typewriter) with command line interface and single file processing.  
 
 ## Use Typewriter Cli with Rider  
 Use Rider File Watchers settings.  
