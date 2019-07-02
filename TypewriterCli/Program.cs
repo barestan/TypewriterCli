@@ -9,7 +9,7 @@ using Typewriter.Metadata.Roslyn;
 
 namespace TypewriterCli
 {
-    static class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
