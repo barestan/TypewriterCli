@@ -137,7 +137,7 @@ namespace Typewriter.Metadata.Roslyn
                 return new RoslynVoidTaskMetadata();
             }
 
-            return new RoslynTypeMetadata(symbol, false, false);
+            return new RoslynTypeMetadata(symbol,  !symbol.IsReferenceType, false);
         }
 
         public static IEnumerable<ITypeMetadata> FromTypeSymbols(IEnumerable<ITypeSymbol> symbols)
