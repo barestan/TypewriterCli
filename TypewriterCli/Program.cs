@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Mono.Options;
 using Typewriter.CodeModel.Configuration;
 using Typewriter.CodeModel.Implementation;
@@ -49,13 +50,23 @@ namespace TypewriterCli
                 if (sourcePath == null)
                     throw new InvalidOperationException("Missing required option -s|source");
 
+                FileAttributes attr = File.GetAttributes(sourcePath);
+
                 var settings = new SettingsImpl();
                 var template = new Template(templatePath);
                 var provider = new RoslynMetadataProvider();
-                var file = new FileImpl(provider.GetFile(sourcePath, settings, null));
-
-                template.RenderFile(file);
-                //Console.WriteLine("Convert {0} ms", stopwatch.ElapsedMilliseconds);
+//detect whether its a directory or file
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    foreach (var path in  Directory.GetFiles(sourcePath))
+                    {
+                        var file = new FileImpl(provider.GetFile(path, settings, null));
+                        template.RenderFile(file);
+                    }
+                else
+                {
+                    var file = new FileImpl(provider.GetFile(sourcePath, settings, null));
+                    template.RenderFile(file);
+                }
             }
             catch (Exception e)
             {
