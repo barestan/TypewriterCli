@@ -36,7 +36,7 @@ namespace Typewriter.Metadata.Roslyn
                 if (propertyText != null && CONSTANT_VALUE_SYNTAX.IsMatch(propertyText))
                 {
                     var value = CONSTANT_VALUE_SYNTAX.Match(propertyText);
-                    return value.Groups[1] + "";
+                    return (value.Groups[1] + "").Trim('\'');
                 }
             }
             return _symbol.ConstantValue.ToString().Trim('\'');
