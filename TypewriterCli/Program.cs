@@ -104,7 +104,7 @@ namespace TypewriterCli
 
         private static string ExportStatement(String outputPath)
         {
-            return $"export * from \"./{Path.GetFileName(outputPath).Replace(".ts\"", "")};\n";
+            return $"export * from \"./{Path.GetFileName(outputPath).Replace(".ts", "")}\";\n";
         }
 
         static void ShowHelp (OptionSet p)
