@@ -123,7 +123,7 @@ namespace Typewriter.Generation
             }
         }
 
-        public bool RenderFile(File file)
+        public string RenderFile(File file)
         {
             bool success;
             var output = Render(file, out success);
@@ -136,11 +136,11 @@ namespace Typewriter.Generation
                 }
                 else
                 {
-                    SaveFile(file, output, ref success);
+                    return SaveFile(file, output, ref success);
                 }
             }
 
-            return success;
+            return null;
         }
 
         protected virtual void WriteFile(string outputPath, string outputContent)
@@ -148,7 +148,7 @@ namespace Typewriter.Generation
             System.IO.File.WriteAllText(outputPath, outputContent, new UTF8Encoding(true));
         }
 
-        protected virtual void SaveFile(File file, string output, ref bool success)
+        protected virtual string SaveFile(File file, string output, ref bool success)
         {
             //ProjectItem item;
             var outputPath = GetOutputPath(file);
@@ -158,7 +158,7 @@ namespace Typewriter.Generation
                 //Log.Error(");
                 Console.WriteLine($"Output filename cannot match source filename.");
                 success = false;
-                return;
+                return outputPath;
             }
 
             var hasChanged = HasChanged(outputPath, output);
@@ -197,6 +197,7 @@ namespace Typewriter.Generation
                 Console.WriteLine($"No changes: {outputPath}");
             }
 
+            return outputPath;
             //SetMappedSourceFile(item, file.FullName);
         }
 
