@@ -54,34 +54,22 @@ namespace TypewriterCli
                 if (sourcePath == null)
                     throw new InvalidOperationException("Missing required option -s|source");
 
-                FileAttributes attr = File.GetAttributes(sourcePath);
 
                 var settings = new SettingsImpl();
                 var template = new Template(templatePath);
                 var provider = new RoslynMetadataProvider();
                 var indexBuilder = new StringBuilder();
 //detect whether its a directory or file
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                    foreach (var path in  GetFiles(sourcePath))
-                    {
-                        var file = new FileImpl(provider.GetFile(path, settings, null));
-                        var outputPath = template.RenderFile(file);
-                        if (outputPath != null)
-                        {
-                            indexBuilder.Append(ExportStatement(outputPath));
-                        }
-                    }
-                else
+                foreach (var path in  GetFiles(sourcePath))
                 {
-                    var file = new FileImpl(provider.GetFile(sourcePath, settings, null));
-                    template.RenderFile(file);
+                    var file = new FileImpl(provider.GetFile(path, settings, null));
                     var outputPath = template.RenderFile(file);
                     if (outputPath != null)
                     {
                         indexBuilder.Append(ExportStatement(outputPath));
                     }
                 }
-
+              
                 if (generateIndex)
                 {
                     var @join = Path.Join(Path.GetDirectoryName(templatePath), "index.ts");
@@ -100,14 +88,23 @@ namespace TypewriterCli
             List<string> result = new List<string>();
             foreach (var sourcePath in sourcePaths.Split(","))
             {
-                result.AddRange(Directory.GetFiles(sourcePath));
+                FileAttributes attr = File.GetAttributes(sourcePath);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    result.AddRange(Directory.GetFiles(sourcePath));
+                }
+                else
+                {
+                    result.Add(sourcePath);
+                }
+             
             }
             return result.ToArray();
         }
 
         private static string ExportStatement(String outputPath)
         {
-            return $"export * from ./{Path.GetFileName(outputPath).Replace(".ts", "")};\n";
+            return $"export * from \"./{Path.GetFileName(outputPath).Replace(".ts\"", "")};\n";
         }
 
         static void ShowHelp (OptionSet p)
