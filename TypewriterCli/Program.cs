@@ -48,38 +48,45 @@ namespace TypewriterCli
                     return;
                 }
                 
-                if (templatePath == null)
+                var cliArgs = new CliArgs(templatePath,sourcePath, generateIndex);
+                
+                if (cliArgs.TemplatePath == null)
                     throw new InvalidOperationException("Missing required option -t|template");
 
-                if (sourcePath == null)
+                if (cliArgs.SourcePath == null)
                     throw new InvalidOperationException("Missing required option -s|source");
 
 
-                var settings = new SettingsImpl();
-                var template = new Template(templatePath);
-                var provider = new RoslynMetadataProvider();
-                var indexBuilder = new StringBuilder();
-//detect whether its a directory or file
-                foreach (var path in  GetFiles(sourcePath))
-                {
-                    var file = new FileImpl(provider.GetFile(path, settings, null));
-                    var outputPath = template.RenderFile(file);
-                    if (outputPath != null)
-                    {
-                        indexBuilder.Append(ExportStatement(outputPath));
-                    }
-                }
-              
-                if (generateIndex)
-                {
-                    var @join = Path.Join(Path.GetDirectoryName(templatePath), "index.ts");
-                    Console.WriteLine($"Outputting to {@join}");
-                    File.WriteAllText(@join, indexBuilder.ToString(), new UTF8Encoding(true));
-                }
+                Generate(cliArgs);
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Error: {e.Message}");
+            }
+        }
+
+        public static void Generate(CliArgs cliArgs)
+        {
+            var settings = new SettingsImpl();
+            var template = new Template(cliArgs.TemplatePath);
+            var provider = new RoslynMetadataProvider();
+            var indexBuilder = new StringBuilder();
+//detect whether its a directory or file
+            foreach (var path in GetFiles(cliArgs.SourcePath))
+            {
+                var file = new FileImpl(provider.GetFile(path, settings, null));
+                var outputPath = template.RenderFile(file);
+                if (outputPath != null)
+                {
+                    indexBuilder.Append(ExportStatement(outputPath));
+                }
+            }
+
+            if (cliArgs.GenerateIndex)
+            {
+                var @join = Path.Join(Path.GetDirectoryName(cliArgs.TemplatePath), "index.ts");
+                Console.WriteLine($"Outputting to {@join}");
+                File.WriteAllText(@join, indexBuilder.ToString(), new UTF8Encoding(true));
             }
         }
 
