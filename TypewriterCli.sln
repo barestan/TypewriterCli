@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter", "Typewriter\Ty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter.Demo", "Typewriter.Demo\Typewriter.Demo.csproj", "{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{C8786F45-F67E-4270-952C-8B9ADA0CE962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

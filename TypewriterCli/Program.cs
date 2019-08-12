@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using Mono.Options;
 using Typewriter.CodeModel.Configuration;
 using Typewriter.CodeModel.Implementation;
@@ -16,9 +17,10 @@ namespace TypewriterCli
         
         static void Main(string[] args)
         {
-            var dtoInputPath = Path.Combine(@"C:\Development\Firefly.Backbone\Service\Calculator\Risk\Risk.Shared\Dtos");
-            var templatePath = Path.Combine(@"C:\Development\Firefly.Backbone\Client\Client", "Api", "Risk", "_TypeWriterTemplate.tst");
-            var cliArgs = new CliArgs(templatePath, dtoInputPath, true);
+            //var dtoInputPath = Path.Combine(@"C:\Development\Firefly.Backbone\Service\Calculator\Risk\Risk.Shared\Dtos");
+            var templatePath = Path.Combine(@"C:\Development\Firefly.Backbone\Client\Client", "Api", "_TypeWriterTemplate.tst");
+            var cliArgs = new CliArgs(templatePath, @"C:\Development\Firefly.Backbone\Service\Calculator\Risk\Risk.Shared", true);
+            cliArgs.Recursive = true;
             Generate(cliArgs);
         }
         public static void Main2(string[] args)
@@ -80,7 +82,7 @@ namespace TypewriterCli
             var provider = new RoslynMetadataProvider();
             var indexBuilder = new StringBuilder();
 //detect whether its a directory or file
-            foreach (var path in GetFiles(cliArgs.SourcePath))
+            foreach (var path in GetFiles(cliArgs.SourcePath, cliArgs.Recursive, cliArgs.Regex))
             {
                 var file = new FileImpl(provider.GetFile(path, settings, null));
                 var outputPath = template.RenderFile(file);
@@ -98,7 +100,7 @@ namespace TypewriterCli
             }
         }
 
-        private static string[] GetFiles(string sourcePaths)
+        private static string[] GetFiles(string sourcePaths, bool recursive, string regex)
         {
             List<string> result = new List<string>();
             foreach (var sourcePath in sourcePaths.Split(","))
@@ -106,7 +108,7 @@ namespace TypewriterCli
                 FileAttributes attr = File.GetAttributes(sourcePath);
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 {
-                    result.AddRange(Directory.GetFiles(sourcePath));
+                    result.AddRange(recursive ? GetFilesRecursive(sourcePath,regex) : Directory.GetFiles(sourcePath));
                 }
                 else
                 {
@@ -115,6 +117,28 @@ namespace TypewriterCli
              
             }
             return result.ToArray();
+        }
+
+        private static IEnumerable<string> GetFilesRecursive(string sourcePath, string regex)
+        {
+            var result = new List<string>();
+            DirSearch(sourcePath, result, regex == null ? null : new Regex(regex));
+            return result;
+        }
+        
+        static void DirSearch(string sDir, List<string> result, Regex wildCard)
+        {
+            foreach (string d in Directory.GetDirectories(sDir))
+            {
+                foreach (string f in Directory.GetFiles(d))
+                {
+                    if (wildCard == null || wildCard.IsMatch(f))
+                    {
+                        result.Add(f);
+                    }
+                }
+                DirSearch(d, result, wildCard);
+            }
         }
 
         private static string ExportStatement(String outputPath)

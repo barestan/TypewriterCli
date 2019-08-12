@@ -132,7 +132,7 @@ namespace Typewriter.Generation
             {
                 if (output == null)
                 {
-                    DeleteFile(file);
+                    //DeleteFile(file);
                 }
                 else
                 {
