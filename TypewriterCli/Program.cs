@@ -13,7 +13,15 @@ namespace TypewriterCli
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        
+        static void Main(string[] args)
+        {
+            var dtoInputPath = Path.Combine(@"C:\Development\Firefly.Backbone\Service\Calculator\Risk\Risk.Shared\Dtos");
+            var templatePath = Path.Combine(@"C:\Development\Firefly.Backbone\Client\Client", "Api", "Risk", "_TypeWriterTemplate.tst");
+            var cliArgs = new CliArgs(templatePath, dtoInputPath, true);
+            Generate(cliArgs);
+        }
+        public static void Main2(string[] args)
         {
             //var stopwatch = Stopwatch.StartNew();
             var showHelp = args == null || args.Length == 0;
