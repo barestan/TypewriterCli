@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Mono.Options;
@@ -128,7 +129,9 @@ namespace TypewriterCli
         
         static void DirSearch(string sDir, List<string> result, Regex wildCard)
         {
-            foreach (string d in Directory.GetDirectories(sDir))
+            var directories = Directory.GetDirectories(sDir).ToList();
+            directories.Add(sDir);
+            foreach (string d in directories)
             {
                 foreach (string f in Directory.GetFiles(d))
                 {
