@@ -130,6 +130,7 @@ namespace TypewriterCli
         static void DirSearch(string sDir, List<string> result, Regex wildCard)
         {
             var directories = Directory.GetDirectories(sDir).ToList();
+            directories.Add(sDir);
             foreach (string d in directories)
             {
                 foreach (string f in Directory.GetFiles(d))
