@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Typewriter.Metadata\Typewriter.Metadata.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Typewriter.Metadata\Typewriter.Metadata.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="2.9.0" />
-      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.9.0" />
-      <PackageReference Include="Microsoft.CodeAnalysis.Features" Version="2.9.0" />
-      <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Features" Version="2.9.0" />
-      <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="2.9.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Features" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Features" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="3.7.0" />
+  </ItemGroup>
 
 </Project>

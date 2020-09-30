@@ -1,18 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypewriterCli", "TypewriterCli\TypewriterCli.csproj", "{95208EDE-DD92-4577-98BC-77F82D26ED4E}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypewriterCli", "TypewriterCli\TypewriterCli.csproj", "{95208EDE-DD92-4577-98BC-77F82D26ED4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter.Metadata", "Typewriter.Metadata\Typewriter.Metadata.csproj", "{3642DA20-D8A8-42B6-AEFF-E6C0F21BC079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Typewriter.Metadata", "Typewriter.Metadata\Typewriter.Metadata.csproj", "{3642DA20-D8A8-42B6-AEFF-E6C0F21BC079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter.CodeModel", "Typewriter.CodeModel\Typewriter.CodeModel.csproj", "{C567E043-F39A-4778-86C1-222667FF8222}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Typewriter.CodeModel", "Typewriter.CodeModel\Typewriter.CodeModel.csproj", "{C567E043-F39A-4778-86C1-222667FF8222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter.Metadata.Roslyn", "Typewriter.Metadata.Roslyn\Typewriter.Metadata.Roslyn.csproj", "{F4BC0B0C-ACBD-430B-B374-ACA0530663C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Typewriter.Metadata.Roslyn", "Typewriter.Metadata.Roslyn\Typewriter.Metadata.Roslyn.csproj", "{F4BC0B0C-ACBD-430B-B374-ACA0530663C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter", "Typewriter\Typewriter.csproj", "{41F576A7-0AB7-4765-87D7-BAC43E22882E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typewriter.Demo", "Typewriter.Demo\Typewriter.Demo.csproj", "{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{C8786F45-F67E-4270-952C-8B9ADA0CE962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Typewriter", "Typewriter\Typewriter.csproj", "{41F576A7-0AB7-4765-87D7-BAC43E22882E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,13 +39,11 @@ Global
 		{41F576A7-0AB7-4765-87D7-BAC43E22882E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41F576A7-0AB7-4765-87D7-BAC43E22882E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41F576A7-0AB7-4765-87D7-BAC43E22882E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F54E8B6-37E0-4EBD-BACD-CCAAD85A4104}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8786F45-F67E-4270-952C-8B9ADA0CE962}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C8BA7ED-9DB3-4AAF-A485-5FEB6FBFC713}
 	EndGlobalSection
 EndGlobal

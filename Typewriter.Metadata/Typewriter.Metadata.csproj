@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Typewriter.CodeModel\Typewriter.CodeModel.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Typewriter.CodeModel\Typewriter.CodeModel.csproj" />
+  </ItemGroup>
 
 </Project>
