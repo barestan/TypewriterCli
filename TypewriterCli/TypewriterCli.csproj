@@ -4,6 +4,7 @@
       <OutputType>Exe</OutputType>
       <TargetFramework>netcoreapp3.1</TargetFramework>
       <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      <PackageVersion>1.0.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
