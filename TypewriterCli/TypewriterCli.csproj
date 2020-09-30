@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-      <OutputType>Exe</OutputType>
-      <TargetFramework>netcoreapp3.1</TargetFramework>
-      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-      <PackageVersion>1.0.0</PackageVersion>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Typewriter\Typewriter.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Typewriter\Typewriter.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Mono.Options" Version="6.6.0.161" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Options" Version="6.6.0.161" />
+  </ItemGroup>
 
 </Project>
