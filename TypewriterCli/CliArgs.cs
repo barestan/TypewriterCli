@@ -26,7 +26,9 @@ namespace TypewriterCli
         public string TemplatePath => templatePath;
 
         public string SourcePath => sourcePath;
+
         public bool Recursive { get; set; }
+
         public string Regex { get; set; }
     }
 }
