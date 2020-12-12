@@ -66,7 +66,7 @@ namespace Typewriter.Metadata.Roslyn
         internal static IClassMetadata FromNamedTypeSymbol(INamedTypeSymbol symbol)
         {
             if (symbol == null) return null;
-            if (symbol.DeclaredAccessibility != Accessibility.Public || symbol.ToDisplayString() == "object") return null;
+            if (symbol.ToDisplayString() == "object") return null;
 
             return new RoslynClassMetadata(symbol, null);
         }

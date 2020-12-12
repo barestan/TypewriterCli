@@ -1,17 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Typewriter.Metadata.Roslyn\Typewriter.Metadata.Roslyn.csproj" />
-      <ProjectReference Include="..\Typewriter.Metadata\Typewriter.Metadata.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Typewriter.Metadata.Roslyn\Typewriter.Metadata.Roslyn.csproj" />
+    <ProjectReference Include="..\Typewriter.Metadata\Typewriter.Metadata.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="2.9.0" />
-      <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.8.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
 
 </Project>

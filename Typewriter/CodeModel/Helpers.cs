@@ -122,6 +122,7 @@ namespace Typewriter.CodeModel
                 case "System.Double":
                 case "System.Decimal":
                     return "number";
+                case "DateTime":
                 case "System.DateTime":
                 case "System.DateTimeOffset":
                     return "Date";
@@ -176,7 +177,7 @@ namespace Typewriter.CodeModel
             { "System.UInt16", "ushort" },
             { "System.UInt64", "ulong" },
 
-            { "System.DateTime", "DateTime" },
+            { "System.DateTime", "Date" },
             { "System.DateTimeOffset", "DateTimeOffset" },
             { "System.Guid", "Guid" },
             { "System.TimeSpan", "TimeSpan" },
@@ -196,7 +197,7 @@ namespace Typewriter.CodeModel
             { "UInt16", "ushort" },
             { "UInt64", "ulong" },
 
-            { "DateTime", "DateTime" },
+            { "DateTime", "Date" },
             { "DateTimeOffset", "DateTimeOffset" },
             { "Guid", "Guid" },
             { "TimeSpan", "TimeSpan" },

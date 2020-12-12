@@ -40,6 +40,7 @@ namespace Typewriter.Metadata.Roslyn
         public string FullName => _codePath;
 
         public IEnumerable<IClassMetadata> Classes => RoslynClassMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<ClassDeclarationSyntax>(), this);
+        public IClassMetadata BaseClass => RoslynClassMetadata.FromNamedTypeSymbol(GetNamespaceChildNodes<BaseArgumentListSyntax>().FirstOrDefault());
         public IEnumerable<IDelegateMetadata> Delegates => RoslynDelegateMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<DelegateDeclarationSyntax>());
         public IEnumerable<IEnumMetadata> Enums => RoslynEnumMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<EnumDeclarationSyntax>());
         public IEnumerable<IInterfaceMetadata> Interfaces => RoslynInterfaceMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<InterfaceDeclarationSyntax>(), this);
@@ -72,8 +73,10 @@ namespace Typewriter.Metadata.Roslyn
 
         private IEnumerable<INamedTypeSymbol> GetNamespaceChildNodes<T>() where T : SyntaxNode
         {
-            var symbols = _root.ChildNodes().OfType<T>().Concat(
-                _root.ChildNodes().OfType<NamespaceDeclarationSyntax>().SelectMany(n => n.ChildNodes().OfType<T>()))
+            var syntaxNodes = _root.ChildNodes().OfType<NamespaceDeclarationSyntax>().SelectMany(n => n.ChildNodes().OfType<T>());
+            var ofType = _root.ChildNodes().OfType<T>();
+            var symbols = ofType.Concat(
+                syntaxNodes)
                 .Select(c => _semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol);
 
             if (Settings.PartialRenderingMode == PartialRenderingMode.Combined)

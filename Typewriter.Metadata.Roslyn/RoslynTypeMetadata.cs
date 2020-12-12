@@ -10,16 +10,18 @@ namespace Typewriter.Metadata.Roslyn
         private readonly ITypeSymbol _symbol;
         private readonly bool _isNullable;
         private readonly bool _isTask;
+        private readonly bool _isArray;
 
-        public RoslynTypeMetadata(ITypeSymbol symbol, bool isNullable, bool isTask)
+        public RoslynTypeMetadata(ITypeSymbol symbol, bool isNullable, bool isTask, bool isArray)
         {
             _symbol = symbol;
             _isNullable = isNullable;
             _isTask = isTask;
+            _isArray = isArray;
         }
 
         public string DocComment => _symbol.GetDocumentationCommentXml();
-        public string Name => _symbol.GetName() + (IsNullable? "?" : string.Empty);
+        public string Name => _symbol.GetName(_isArray) + (IsNullable? "?" : string.Empty);
         public string FullName => _symbol.GetFullName() + (IsNullable? "?" : string.Empty);
         public bool IsAbstract => (_symbol as INamedTypeSymbol)?.IsAbstract ?? false;
         public bool IsGeneric => (_symbol as INamedTypeSymbol)?.TypeParameters.Any() ?? false;
@@ -113,7 +115,18 @@ namespace Typewriter.Metadata.Roslyn
                 var argument = type?.TypeArguments.FirstOrDefault();
 
                 if (argument != null)
-                    return new RoslynTypeMetadata(argument, true, false);
+                    return new RoslynTypeMetadata(argument, true, false, false);
+            }
+            else if (symbol.Name.StartsWith("List"))
+            {
+                var type = symbol as INamedTypeSymbol;
+                var argument = type?.TypeArguments.FirstOrDefault();
+
+                if (argument != null)
+                {
+                    var roslynTypeMetadata = new RoslynTypeMetadata(argument, false, false, true);
+                    return roslynTypeMetadata;
+                }
             }
             else if (symbol.Name == "Task" && symbol.ContainingNamespace.GetFullName() == "System.Threading.Tasks")
             {
@@ -128,16 +141,16 @@ namespace Typewriter.Metadata.Roslyn
                         var innerArgument = type?.TypeArguments.FirstOrDefault();
 
                         if (innerArgument != null)
-                            return new RoslynTypeMetadata(innerArgument, true, true);
+                            return new RoslynTypeMetadata(innerArgument, true, true, false);
                     }
 
-                    return new RoslynTypeMetadata(argument, false, true);
+                    return new RoslynTypeMetadata(argument, false, true, false);
                 }
 
                 return new RoslynVoidTaskMetadata();
             }
 
-            return new RoslynTypeMetadata(symbol, false, false);
+            return new RoslynTypeMetadata(symbol,  false, false, false);
         }
 
         public static IEnumerable<ITypeMetadata> FromTypeSymbols(IEnumerable<ITypeSymbol> symbols)
